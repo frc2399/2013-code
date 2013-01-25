@@ -1,5 +1,4 @@
 /build/
-/PIMP/build/
 
 
 *.class
@@ -10,9 +9,9 @@
 *.ear
 
 # Netbeans Files#
-/*/nbproject/private/
-/*/doc/
-/*/suite/
+nbproject/private/
+doc/
+suite/
 
 
 #################
