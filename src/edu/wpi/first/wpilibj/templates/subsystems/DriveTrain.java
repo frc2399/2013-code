@@ -15,10 +15,11 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
 
     //THESE ARE NOT CORRECT PORT NUMBERS!!!
-    Jaguar leftFront = new Jaguar(1);
-    Jaguar leftRear = new Jaguar(2);
-    Jaguar rightFront = new Jaguar(3);
-    Jaguar rightRear = new Jaguar(4);
+    //they are set to PIMP's #'s
+    public Jaguar leftFront = new Jaguar(1);
+    public Jaguar leftRear = new Jaguar(2);
+    public Jaguar rightFront = new Jaguar(4);
+    public Jaguar rightRear = new Jaguar(3);
     
     public RobotDrive drive = new RobotDrive( leftFront, leftRear, rightFront, rightRear);
     

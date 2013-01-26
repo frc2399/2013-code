@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.templates.subsystems.Pitch;
+import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
+import edu.wpi.first.wpilibj.templates.subsystems.Vision;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -21,6 +23,8 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems
     public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
     public static Pitch pitch;
+    public static Shooter shooter;
+    public static Vision vision;
     
 
     public static void init() {
@@ -32,6 +36,8 @@ public abstract class CommandBase extends Command {
         oi = new OI();
         driveTrain = new DriveTrain();
         pitch = new Pitch();
+        shooter = new Shooter();
+        vision = new Vision();
 
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(exampleSubsystem);

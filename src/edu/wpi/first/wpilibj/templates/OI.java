@@ -48,16 +48,21 @@ public class OI {
     
     //FIX THESE 
     //we dont want to twist and go forward!!!!!
+    //they are all negative because PIMP is wired so that all of the motors run 
+    //backward when they are supposed to run forwards
+    //this is a PIMP thing
+    //might need to change for 2013 robot
     public double getForwardSpeed(){
-        return driveyStick.getY();
+        return -driveyStick.getRawAxis(2);
     }
     
     public double getSideSpeed(){
-        return driveyStick.getX();
+        return -driveyStick.getRawAxis(1);
     }
     
     public double getTwistSpeed(){
-        return -driveyStick.getTwist();
+        return driveyStick.getRawAxis(3);
+        
     }
 }
 

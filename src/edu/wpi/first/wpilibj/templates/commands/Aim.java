@@ -27,7 +27,8 @@ public class Aim extends CommandBase {
     public Aim() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(CommandBase.pitch);
+        requires(pitch);
+        requires(vision);
     }
 
     // Called just before this Command runs the first time
