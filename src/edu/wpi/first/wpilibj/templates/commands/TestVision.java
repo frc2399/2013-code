@@ -24,7 +24,7 @@ public class TestVision extends CommandBase {
     public TestVision() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires( vision );
+        requires(vision);
     }
 
     // Called just before this Command runs the first time
@@ -56,7 +56,7 @@ public class TestVision extends CommandBase {
              * we'll just print it for now
              */
             ParticleAnalysisReport[] reports = greenThreshold.getOrderedParticleAnalysisReports();  // get list of results
-            System.out.println( reports );
+            System.out.println( reports.toString() );
            
             
             //foundParticles.free();
