@@ -13,7 +13,7 @@ public class Shooter extends Subsystem {
     
     //NOT CORRECT PORT #!
     //might not be a Jag
-    public Jaguar shootMot = new Jaguar(1);
+    public Jaguar shootMot = new Jaguar(3);
 
     //not setting a default command at the moment
     //there is no default in 2012 code
