@@ -11,9 +11,10 @@ public class Shooter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
-    //NOT CORRECT PORT #!
+    //might be correct port #
+    //if this fails, ask electrical if it is actually plugged into this port
     //might not be a Jag
-    public Jaguar shootMot = new Jaguar(3);
+    public Jaguar shootMot = new Jaguar(5);
 
     //not setting a default command at the moment
     //there is no default in 2012 code

@@ -19,9 +19,7 @@ public class DriveTrain extends Subsystem {
     public Jaguar leftFront = new Jaguar(1);
     public Jaguar leftRear = new Jaguar(2);
     public Jaguar rightFront = new Jaguar(4);
-    //SHOULD BE PORT 3
-    //CHANGING JUST FOR SHOOTER TESTING THINGS!
-    public Jaguar rightRear = new Jaguar(5);
+    public Jaguar rightRear = new Jaguar(3);
     
     public RobotDrive drive = new RobotDrive( leftFront, leftRear, rightFront, rightRear);
     
