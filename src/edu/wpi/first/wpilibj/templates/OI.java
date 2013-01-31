@@ -58,14 +58,14 @@ public class OI {
     private final JoystickButton medShootButt = new JoystickButton(driveyStick, medShootButtNum); 
     private final JoystickButton slowShootButt = new JoystickButton(driveyStick, slowShootButtNum); 
     
-    ShootOn fastShootOn = new ShootOn(1);
-    ShootOn medShootOn = new ShootOn(.75);
-    ShootOn slowShootOn = new ShootOn(.5);
+    //ShootOn fastShootOn = new ShootOn(1);
+    //ShootOn medShootOn = new ShootOn(.75);
+    //ShootOn slowShootOn = new ShootOn(.5);
     
     public OI(){
-        fastShootButt.whenPressed(fastShootOn);
-        medShootButt.whenPressed(medShootOn);
-        slowShootButt.whenPressed(slowShootOn);
+        //fastShootButt.whenPressed(fastShootOn);
+        //medShootButt.whenPressed(medShootOn);
+        //slowShootButt.whenPressed(slowShootOn);
         
     }
     
@@ -84,7 +84,7 @@ public class OI {
     }
     
     public double getTwistSpeed(){
-        return driveyStick.getRawAxis(3);
+        return -driveyStick.getRawAxis(3);
         
     }
 }

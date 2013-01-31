@@ -34,8 +34,11 @@ public class DriveTrain extends Subsystem {
     }
     
     public double getTestEncoder() {
-        //System.out.println("right encoder:" + -rightEncoder.getDistance());
         return testEncoder.getDistance();
+    }
+    
+    public void startTestEncoder() {
+        testEncoder.start();
     }
 }
 
