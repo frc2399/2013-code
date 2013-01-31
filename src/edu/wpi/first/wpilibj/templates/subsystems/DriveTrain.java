@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.commands.JoystickDrive;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.Encoder;
 
 /**
  *
@@ -21,12 +23,19 @@ public class DriveTrain extends Subsystem {
     public Jaguar rightFront = new Jaguar(4);
     public Jaguar rightRear = new Jaguar(3);
     
+    Encoder testEncoder = new Encoder(RobotMap.testEncoderA, RobotMap.testEncoderB);
+    
     public RobotDrive drive = new RobotDrive( leftFront, leftRear, rightFront, rightRear);
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
         setDefaultCommand( new JoystickDrive());
+    }
+    
+    public double getTestEncoder() {
+        //System.out.println("right encoder:" + -rightEncoder.getDistance());
+        return testEncoder.getDistance();
     }
 }
 
