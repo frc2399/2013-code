@@ -29,6 +29,10 @@ public class DriveTrain extends Subsystem {
     
     public RobotDrive drive = new RobotDrive( leftFront, leftRear, rightFront, rightRear);
     
+    public DriveTrain(){
+        gyro.setSensitivity(0.007);
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
