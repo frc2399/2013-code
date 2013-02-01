@@ -24,7 +24,8 @@ public class JoystickDrive extends CommandBase {
     protected void execute() {
         driveTrain.drive.mecanumDrive_Cartesian(oi.getSideSpeed(), oi.getForwardSpeed(), oi.getTwistSpeed(), 0);
         
-        System.out.println(driveTrain.getTestEncoder());
+        System.out.println("encoder: " + driveTrain.getTestEncoder());
+        System.out.println("gyro: " + driveTrain.getGyroAngle());
         
         /**
         //forward = leftFront

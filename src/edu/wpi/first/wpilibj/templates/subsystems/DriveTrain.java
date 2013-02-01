@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
 
 /**
  *
@@ -24,6 +25,7 @@ public class DriveTrain extends Subsystem {
     public Jaguar rightRear = new Jaguar(3);
     
     Encoder testEncoder = new Encoder(RobotMap.testEncoderA, RobotMap.testEncoderB);
+    Gyro gyro = new Gyro(RobotMap.gyro);
     
     public RobotDrive drive = new RobotDrive( leftFront, leftRear, rightFront, rightRear);
     
@@ -39,6 +41,10 @@ public class DriveTrain extends Subsystem {
     
     public void startTestEncoder() {
         testEncoder.start();
+    }
+    
+    public double getGyroAngle(){
+        return gyro.getAngle();
     }
 }
 
