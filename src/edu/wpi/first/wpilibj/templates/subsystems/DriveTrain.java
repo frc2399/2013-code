@@ -16,17 +16,17 @@ public class DriveTrain extends Subsystem {
 
     //THESE ARE NOT CORRECT PORT NUMBERS!!!
     //they are set to PIMP's #'s
-    public Jaguar leftFront = new Jaguar(1);
-    public Jaguar leftRear = new Jaguar(2);
-    public Jaguar rightFront = new Jaguar(4);
-    public Jaguar rightRear = new Jaguar(3);
+    //public Jaguar leftFront = new Jaguar(1);
+    //public Jaguar leftRear = new Jaguar(2);
+    //public Jaguar rightFront = new Jaguar(4);
+    //public Jaguar rightRear = new Jaguar(3);
     
-    public RobotDrive drive = new RobotDrive( leftFront, leftRear, rightFront, rightRear);
+    //public RobotDrive drive = new RobotDrive( leftFront, leftRear, rightFront, rightRear);
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand( new JoystickDrive());
+        //setDefaultCommand( new JoystickDrive());
     }
 }
 

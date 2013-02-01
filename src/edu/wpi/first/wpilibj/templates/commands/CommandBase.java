@@ -38,6 +38,7 @@ public abstract class CommandBase extends Command {
         pitch = new Pitch();
         shooter = new Shooter();
         vision = new Vision();
+        
 
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(exampleSubsystem);

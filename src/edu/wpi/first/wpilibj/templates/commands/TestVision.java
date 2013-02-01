@@ -30,7 +30,9 @@ public class TestVision extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         
-        camera = AxisCamera.getInstance();
+        System.out.println( "Initilize testVision is running.");
+        
+        camera = AxisCamera.getInstance( "10.23.99.11");
         
         //I don't thinnk we have to currently set any criteria
         //do we need to set resolution now? We will probably need to for image analysis 
@@ -38,7 +40,7 @@ public class TestVision extends CommandBase {
         //cc = new CriteriaCollection();
         //cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_WIDTH, 20, 400, false);
         //cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_HEIGHT, 15, 400, false);
-        //camera.writeResolution(AxisCamera.ResolutionT.k320x240);
+        camera.writeResolution(AxisCamera.ResolutionT.k320x240);
         
         try {
             ColorImage image = camera.getImage();
@@ -55,6 +57,8 @@ public class TestVision extends CommandBase {
              * want center of particles, number of particles
              * we'll just print it for now
              */
+            System.out.println( "Were almost to Particle Analysis report!");
+            
             ParticleAnalysisReport[] reports = greenThreshold.getOrderedParticleAnalysisReports();  // get list of results
             System.out.println( reports.toString() );
            
@@ -66,7 +70,9 @@ public class TestVision extends CommandBase {
             //image.free();
 
         } catch (AxisCameraException ex) {
+            ex.printStackTrace();
         } catch (NIVisionException ex) {
+            ex.printStackTrace();
         }
 
          Timer.delay(0.5);
