@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.commands.ShootOn;
 import edu.wpi.first.wpilibj.templates.commands.ShootOff;
 import edu.wpi.first.wpilibj.templates.commands.GyroReset;
+import edu.wpi.first.wpilibj.templates.commands.Turn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -54,23 +55,27 @@ public class OI {
     public static int medShootButtNum = 8;
     public static int slowShootButtNum = 9;
     public static int gyroResetButtNum = 4;
+    public static int turnButtNum = 3;
     
     
     private final JoystickButton fastShootButt = new JoystickButton(driveyStick, fastShootButtNum); 
     private final JoystickButton medShootButt = new JoystickButton(driveyStick, medShootButtNum); 
     private final JoystickButton slowShootButt = new JoystickButton(driveyStick, slowShootButtNum); 
     private final JoystickButton gyroResetButt = new JoystickButton(driveyStick, gyroResetButtNum);
+    private final JoystickButton turnButt = new JoystickButton(driveyStick, turnButtNum);
     
     //ShootOn fastShootOn = new ShootOn(1);
     //ShootOn medShootOn = new ShootOn(.75);
     //ShootOn slowShootOn = new ShootOn(.5);
     GyroReset gyroReset = new GyroReset();
+    Turn turn = new Turn(90, 0.25);
     
     public OI(){
         //fastShootButt.whenPressed(fastShootOn);
         //medShootButt.whenPressed(medShootOn);
         //slowShootButt.whenPressed(slowShootOn);
         gyroResetButt.whenPressed(gyroReset);
+        turnButt.whenPressed(turn);
         
     }
     

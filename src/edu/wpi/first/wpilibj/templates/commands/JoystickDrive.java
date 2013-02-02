@@ -31,6 +31,11 @@ public class JoystickDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        //Brad Miller things
+        //originally, the documentation for mecanumDrive_Cartesian had the parameters listed in the wrong order
+        //it seems to be okay now
+        //not sure why
+        //look into this matter later, might need to change some source code
         driveTrain.drive.mecanumDrive_Cartesian(oi.getSideSpeed(), oi.getForwardSpeed(), oi.getTwistSpeed(), 0);
         
         //System.out.println("Time: " + timer.get() + "miliseconds");
