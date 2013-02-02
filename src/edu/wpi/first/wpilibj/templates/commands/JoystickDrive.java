@@ -21,14 +21,19 @@ public class JoystickDrive extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         driveTrain.startTestEncoder();
-        timer.start();
+        driveTrain.resetGyro();
+        
+        //for some reason, when the timer is in use, the joysticks stop actually
+        //driving the robot.  I don't know why, but we should remember this
+        //for future reference, so we don't screw up a class later on.  
+        //timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         driveTrain.drive.mecanumDrive_Cartesian(oi.getSideSpeed(), oi.getForwardSpeed(), oi.getTwistSpeed(), 0);
         
-        System.out.println("Time: " + timer.get() + "miliseconds");
+        //System.out.println("Time: " + timer.get() + "miliseconds");
         System.out.println("encoder: " + driveTrain.getTestEncoder());
         System.out.println("gyro: " + driveTrain.getGyroAngle());
         

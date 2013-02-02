@@ -27,9 +27,10 @@ public class DriveTrain extends Subsystem {
     Encoder testEncoder = new Encoder(RobotMap.testEncoderA, RobotMap.testEncoderB);
     Gyro gyro = new Gyro(RobotMap.gyro);
     
-    public RobotDrive drive = new RobotDrive( leftFront, leftRear, rightFront, rightRear);
+    public RobotDrive drive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
     
     public DriveTrain(){
+        gyro.reset();
         gyro.setSensitivity(0.007);
     }
     
@@ -49,6 +50,10 @@ public class DriveTrain extends Subsystem {
     
     public double getGyroAngle(){
         return gyro.getAngle();
+    }
+    
+    public void resetGyro(){
+        gyro.reset();
     }
 }
 
