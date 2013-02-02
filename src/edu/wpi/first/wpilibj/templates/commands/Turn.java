@@ -21,8 +21,10 @@ public class Turn extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(driveTrain);
+        driveTrain.resetGyro();
         this.angle = angle;
         this.speed = speed;
+        
     }
 
     // Called just before this Command runs the first time
@@ -49,6 +51,7 @@ public class Turn extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        driveTrain.resetGyro();
     }
 
     // Called when another command which requires one or more of the same
