@@ -1,6 +1,7 @@
 
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 
 
 /**
@@ -9,6 +10,8 @@ package edu.wpi.first.wpilibj.templates.commands;
  */
 public class JoystickDrive extends CommandBase {
 
+    Timer timer;
+    
     public JoystickDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -18,12 +21,14 @@ public class JoystickDrive extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         driveTrain.startTestEncoder();
+        timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         driveTrain.drive.mecanumDrive_Cartesian(oi.getSideSpeed(), oi.getForwardSpeed(), oi.getTwistSpeed(), 0);
         
+        System.out.println("Time: " + timer.get() + "miliseconds");
         System.out.println("encoder: " + driveTrain.getTestEncoder());
         System.out.println("gyro: " + driveTrain.getGyroAngle());
         
