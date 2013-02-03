@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.templates.subsystems.Pitch;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 import edu.wpi.first.wpilibj.templates.subsystems.Vision;
 
@@ -22,7 +21,6 @@ public abstract class CommandBase extends Command {
     public static DriveTrain driveTrain;
     // Create a single static instance of all of your subsystems
     public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-    public static Pitch pitch;
     public static Shooter shooter;
     public static Vision vision;
     
@@ -35,7 +33,6 @@ public abstract class CommandBase extends Command {
         // news. Don't move it.
         
         driveTrain = new DriveTrain();
-        pitch = new Pitch();
         shooter = new Shooter();
         vision = new Vision();
 

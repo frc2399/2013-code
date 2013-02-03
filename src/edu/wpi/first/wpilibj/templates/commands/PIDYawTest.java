@@ -1,13 +1,14 @@
 
 package edu.wpi.first.wpilibj.templates.commands;
 
+
 /**
  *
  * @author Jessie
  */
-public class PIDTester extends CommandBase {
+public class PIDYawTest extends CommandBase {
 
-    public PIDTester() {
+    public PIDYawTest() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
