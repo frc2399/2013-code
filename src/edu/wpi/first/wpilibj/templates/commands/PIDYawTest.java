@@ -38,7 +38,7 @@ public class PIDYawTest extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         System.out.println("Translator: " + translator.getValue());
-        driveTrain.drive.mecanumDrive_Cartesian(0, 0, translator.getValue(), 0);
+        driveTrain.drive.mecanumDrive_Cartesian(0, 0, -translator.getValue(), 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
