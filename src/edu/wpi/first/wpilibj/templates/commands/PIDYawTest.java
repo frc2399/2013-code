@@ -27,7 +27,7 @@ public class PIDYawTest extends CommandBase {
         
         translator = new PIDOutputTranslator();
         
-        controller = new PIDController(.001, 0, 0, driveTrain.gyro, translator);
+        controller = new PIDController((oi.getDriveyStickThrottle() + 1.0) / 5.0, 0, 0, driveTrain.gyro, translator);
         
         controller.setSetpoint(driveTrain.getGyroAngle() + angle);
         controller.setPercentTolerance(10);
