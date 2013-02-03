@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.templates.commands.GyroReset;
 import edu.wpi.first.wpilibj.templates.commands.Turn;
 import edu.wpi.first.wpilibj.templates.commands.JoystickDrive;
 import edu.wpi.first.wpilibj.templates.commands.BackwardsJoystickDrive;
+import edu.wpi.first.wpilibj.templates.commands.PIDYawTest;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -77,7 +78,7 @@ public class OI {
     //ShootOn medShootOn = new ShootOn(.75);
     //ShootOn slowShootOn = new ShootOn(.5);
     GyroReset gyroReset = new GyroReset();
-    Turn turn = new Turn(90, 0.25);
+    PIDYawTest turn = new PIDYawTest(90);
     JoystickDrive joystickDrive = new JoystickDrive();
     BackwardsJoystickDrive backwardsJoystickDrive = new BackwardsJoystickDrive();
     

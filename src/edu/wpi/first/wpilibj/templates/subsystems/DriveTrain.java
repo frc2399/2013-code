@@ -25,7 +25,7 @@ public class DriveTrain extends Subsystem {
     public Jaguar rightRear = new Jaguar(3);
     
     Encoder testEncoder = new Encoder(RobotMap.testEncoderA, RobotMap.testEncoderB);
-    Gyro gyro = new Gyro(RobotMap.gyro);
+    public Gyro gyro = new Gyro(RobotMap.gyro);
     
     public RobotDrive drive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
     
