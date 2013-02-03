@@ -27,17 +27,18 @@ public class PIDYawTest extends CommandBase {
         
         translator = new PIDOutputTranslator();
         
-        controller = new PIDController((oi.getDriveyStickThrottle() + 1.0) / 5.0, 0, 0, driveTrain.gyro, translator);
+        controller = new PIDController((oi.getDriveyStickThrottle() + 1.0) / 20.0, 0, 0, driveTrain.gyro, translator);
         
         controller.setSetpoint(driveTrain.getGyroAngle() + angle);
-        controller.setPercentTolerance(10);
+        controller.setPercentTolerance(1);
         controller.setInputRange(-360, 360);
         controller.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("Translator: " + translator.getValue());
+        System.out.println("Translator: " + translator.getValue() + "P " + controller.getP());
+        
         driveTrain.drive.mecanumDrive_Cartesian(0, 0, -translator.getValue(), 0);
     }
 

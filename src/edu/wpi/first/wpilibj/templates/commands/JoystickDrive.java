@@ -21,7 +21,7 @@ public class JoystickDrive extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         driveTrain.startTestEncoder();
-        driveTrain.resetGyro();
+        //driveTrain.resetGyro();
         
         //for some reason, when the timer is in use, the joysticks stop actually
         //driving the robot.  I don't know why, but we should remember this
