@@ -21,8 +21,14 @@ public class RobotMap {
     
     public static final int testEncoderA = 1;
     public static final int testEncoderB = 2;
+    //NOT CORRECT!!!!!
+    public static final int pitchEncoderA = 3;
+    public static final int pitchEncoderB = 4;
+    
     
     public static final int gyro = 2;
+    //NOT CORRECT!!!!!
+    public static final int pitchMot = 5;
     
     
     
