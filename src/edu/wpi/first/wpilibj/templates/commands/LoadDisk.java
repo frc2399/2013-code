@@ -3,7 +3,7 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 /**
  *
- * @author programmers 2013
+ * @author Jessie
  */
 public class LoadDisk extends CommandBase {
 
@@ -18,6 +18,7 @@ public class LoadDisk extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        //needs to rotate 90 degrees
     }
 
     // Make this return true when this Command no longer needs to run execute()

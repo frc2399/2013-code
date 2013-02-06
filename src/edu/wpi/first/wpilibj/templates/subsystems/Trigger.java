@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
+ * @author Jessie
  */
 public class Trigger extends Subsystem {
     // Put methods for controlling this subsystem

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.templates.subsystems.Shooter;
 import edu.wpi.first.wpilibj.templates.subsystems.Vision;
 import edu.wpi.first.wpilibj.templates.subsystems.Pitch;
+import edu.wpi.first.wpilibj.templates.subsystems.Trigger;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -25,6 +26,7 @@ public abstract class CommandBase extends Command {
     public static Shooter shooter;
     public static Vision vision;
     public static Pitch pitch;
+    public static Trigger trigger;
     
 
     public static void init() {
@@ -38,6 +40,7 @@ public abstract class CommandBase extends Command {
         shooter = new Shooter();
         vision = new Vision();
         pitch = new Pitch();
+        trigger = new Trigger();
 
         //leave oi at the bottom and apart from the other initialized things
         //if it is initialized before the subsytems, it throws some null pointer exceptions

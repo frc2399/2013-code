@@ -3,13 +3,14 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 /**
  *
- * @author bradmiller
+ * @author Jessie
  */
 public class Fire extends CommandBase {
 
     public Fire() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(trigger);
     }
 
     // Called just before this Command runs the first time
