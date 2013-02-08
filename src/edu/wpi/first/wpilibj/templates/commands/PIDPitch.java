@@ -34,7 +34,7 @@ public class PIDPitch extends CommandBase {
         //we need to test the range of the encoder
         //we need to find where zero is
         //then we can update this input range!
-        controller.setInputRange(0, 5);
+        controller.setInputRange(0, 1);
         controller.enable();
     }
 
