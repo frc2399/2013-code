@@ -27,25 +27,27 @@ public class PIDPitch extends CommandBase {
         translator = new PIDOutputTranslator();
         controller = new PIDController(0.0001, 0, 0, pitch.pitchEncoder, translator);
         
-        controller.setSetpoint(pitch.getEncoder() + angle);
-        controller.setPercentTolerance(1);
+        //controller.setSetpoint(pitch.getEncoder() + angle);
+        //controller.setPercentTolerance(1);
+        
         //THIS IS NOT THE RIGHT RANGE
         //I made it this way so that we would not break the robot
         //we need to test the range of the encoder
         //we need to find where zero is
         //then we can update this input range!
-        controller.setInputRange(0, 1);
-        controller.enable();
+        //controller.setInputRange(0, 1);
+        //controller.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        pitch.setSpeed(translator.getValue());
+        //pitch.setSpeed(translator.getValue());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return controller.onTarget();
+        //return controller.onTarget();
+        return true;
     }
 
     // Called once after isFinished returns true
