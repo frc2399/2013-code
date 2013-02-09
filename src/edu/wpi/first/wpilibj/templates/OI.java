@@ -84,7 +84,7 @@ public class OI {
     PIDYawTest turn = new PIDYawTest(90);
     JoystickDrive joystickDrive = new JoystickDrive();
     BackwardsJoystickDrive backwardsJoystickDrive = new BackwardsJoystickDrive();
-    Fire fire = new Fire(.5);
+    Fire fire = new Fire();
     
     public OI(){
         //fastShootButt.whenPressed(fastShootOn);

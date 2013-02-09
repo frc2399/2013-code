@@ -4,6 +4,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 /**
  *
@@ -14,11 +15,9 @@ public class Pitch extends Subsystem {
     // here. Call these from Commands.
     
     public Jaguar pitchMot = new Jaguar(RobotMap.pitchMot);
-    public Encoder pitchEncoder = new Encoder(RobotMap.pitchEncoderA, RobotMap.pitchEncoderB);
-    public Pitch(){
-        
-    }
-
+    //this is different because it is a magnetic encoder
+    public AnalogChannel pitchEncoder = new AnalogChannel(RobotMap.pitchEncoder);
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -37,7 +36,7 @@ public class Pitch extends Subsystem {
      * @return returns the value of the pitch encoder
      */
     public double getEncoder(){
-        return pitchEncoder.get();
+        return pitchEncoder.pidGet();
     }
 }
 

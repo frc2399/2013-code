@@ -4,37 +4,43 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 
 /**
- * 
+ * Moves the trigger fully to the right then fully to the left in order to push a 
+ * Frisbee.  
  * @author Jessie
  */
 public class Fire extends CommandBase {
     
-    double angle;
 
     /**
      * 
-     * @param angle the amount it should turn.  Must be between 0 and 1! 0 is full left, 1 is full right
      */
-    public Fire(double angle) {
+    public Fire() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(trigger);
-        this.angle = angle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        trigger.triggerMot.set(angle);
+        trigger.triggerMot.set(1);
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        //THIS IS NOT DONE
+        //WORK ON MORE WHEN YOU HAVE SENSORS
+        //AND AN ACTUAL ROBOT
+        //AND TESTING
+        //YEAH
+        //COOL
+        //DON'T FORGET
+        trigger.triggerMot.set(0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return trigger.triggerMot.get() == 0;
     }
 
     // Called once after isFinished returns true
