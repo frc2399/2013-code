@@ -41,6 +41,8 @@ public class TestVision extends CommandBase {
     
     BinaryImage newFilteredImage;
     
+    int i = 0;
+    
     
     public TestVision() {
         // Use requires() here to declare subsystem dependencies
@@ -58,7 +60,7 @@ public class TestVision extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        i++;
         System.out.println( "Execute testVision is running.");
         
         camera = AxisCamera.getInstance( "10.23.99.11");
@@ -85,22 +87,24 @@ public class TestVision extends CommandBase {
             
             ColorImage image = camera.getImage();
             
-            image.write("/newImage.bmp");
+            image.write("/newImage" + "h" + ".bmp");
          
             //BinaryImage greenThreshold = image.thresholdRGB(0, 187, 189, 255, 0, 225);
             //BinaryImage convexHullImage = greenThreshold.convexHull(false);
             //BinaryImage noSmallParticles = convexHullImage.removeSmallObjects(false, 5);
             //BinaryImage foundParticles = noSmallParticles.particleFilter(cc);
 
-            //BinaryImage thresholdImage = image.thresholdHSV(160, 255, 102, 255, 45, 255);   // keep only green objects
+            //BinaryImage thresholdImage = image.thresholdHSV(160, 255, 3, 250, 45, 255);   // keep only green objects
             //these values were not working in the light 
             
-            BinaryImage thresholdImage = image.thresholdHSL(30, 255, 3, 29, 183, 255);    //testing these valus now...
-                thresholdImage.write("/threshold.bmp");
+            BinaryImage thresholdImage = image.thresholdRGB(180, 255, 180, 250, 175, 255);    //testing these valus now...
+                thresholdImage.write("/threshold" + "h" + ".bmp");
             BinaryImage convexHullImage = thresholdImage.convexHull(false);          // fill in occluded rectangles
-                convexHullImage.write("/convexHull.bmp");
+                convexHullImage.write("/convexHull" + "h" + ".bmp");
+            //BinaryImage noSmallParticles = convexHullImage.removeSmallObjects(true, 2);
+               //noSmallParticles.write("/noSmallParticles.bmp");
             BinaryImage filteredImage = convexHullImage.particleFilter(cc);           // filter out small particles
-                filteredImage.write("/filteredImage.bmp");
+                filteredImage.write("/filteredImage" + "h" + ".bmp");
             newFilteredImage =convexHullImage.particleFilter(cc);
             
             
