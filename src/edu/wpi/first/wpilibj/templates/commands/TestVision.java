@@ -20,7 +20,28 @@ public class TestVision extends CommandBase {
     AxisCamera camera;
     CriteriaCollection cc;
     
-
+    //used in first Dealy
+    //set to false during execution
+    boolean foo = true;
+    
+    final double topHeightFromGround = 104.125;
+    final double middleHeightFromGround = 88.625;
+    final double lowHeightFromground = 19;
+    final double pyramidHeightFromGround = 0; //find this later...
+    
+    
+    final double topWidth = 54;
+    final double middleWidth = 54;
+    final double lowWidth = 29;
+    
+    final double topHeight = 12;
+    final double middleHeight = 21;
+    
+    final double cameraHeight = 0; //we dont know yet (2.5 feet?)
+    
+    BinaryImage newFilteredImage;
+    
+    
     public TestVision() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -29,45 +50,85 @@ public class TestVision extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        int i = 4;
         
-        System.out.println( "Initilize testVision is running.");
+    }
+        
+   
+
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+        
+        System.out.println( "Execute testVision is running.");
         
         camera = AxisCamera.getInstance( "10.23.99.11");
+        cc = new CriteriaCollection();
         
-        //I don't thinnk we have to currently set any criteria
-        //do we need to set resolution now? We will probably need to for image analysis 
-        
-        //cc = new CriteriaCollection();
         //cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_WIDTH, 20, 400, false);
         //cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_HEIGHT, 15, 400, false);
+        cc.addCriteria(MeasurementType.IMAQ_MT_AREA, 500, 65535, false);
+        
+        //will not work with a lower reolution( 120 x 140?). DO NOT CHANGE
         camera.writeResolution(AxisCamera.ResolutionT.k320x240);
         
+        
+        //if no delay, then AXIS CAMERA EXCEPTION!!!!
+        //DO NOT REMOVE
+        //only runs first time through execute
+        if( foo){ 
+            Timer.delay(5);
+        }
+        
+        Timer.delay(1);
+        
         try {
+            
             ColorImage image = camera.getImage();
             
-            //we will be using def value this year!
-            //probably be using same stuff though
-            
-            BinaryImage greenThreshold = image.thresholdRGB(0, 187, 189, 255, 0, 225);
+            image.write("/newImage.bmp");
+         
+            //BinaryImage greenThreshold = image.thresholdRGB(0, 187, 189, 255, 0, 225);
             //BinaryImage convexHullImage = greenThreshold.convexHull(false);
             //BinaryImage noSmallParticles = convexHullImage.removeSmallObjects(false, 5);
             //BinaryImage foundParticles = noSmallParticles.particleFilter(cc);
 
-            /* what to do with ParticleAnalysisReport:
-             * want center of particles, number of particles
-             * we'll just print it for now
-             */
-            System.out.println( "Were almost to Particle Analysis report!");
+            //BinaryImage thresholdImage = image.thresholdHSV(160, 255, 102, 255, 45, 255);   // keep only green objects
+            //these values were not working in the light 
             
-            ParticleAnalysisReport[] reports = greenThreshold.getOrderedParticleAnalysisReports();  // get list of results
-            System.out.println( reports.toString() );
-           
+            BinaryImage thresholdImage = image.thresholdHSL(30, 255, 3, 29, 183, 255);    //testing these valus now...
+                thresholdImage.write("/threshold.bmp");
+            BinaryImage convexHullImage = thresholdImage.convexHull(false);          // fill in occluded rectangles
+                convexHullImage.write("/convexHull.bmp");
+            BinaryImage filteredImage = convexHullImage.particleFilter(cc);           // filter out small particles
+                filteredImage.write("/filteredImage.bmp");
+            newFilteredImage =convexHullImage.particleFilter(cc);
             
-            //foundParticles.free();
-            //noSmallParticles.free();
-            //convexHullImage.free();
-            //greenThreshold.free();
-            //image.free();
+            
+            //prints out the number of particles (red blobs) it sees after filtering
+            //number of particles should be the number of targets in your viewing angle
+            int numBlobs = filteredImage.getNumberParticles();
+            
+            System.out.println( "Number of Particles: " + numBlobs);
+            
+            //prints out information for each blob found
+            for (int i = 0; i < numBlobs; i++) {
+                    ParticleAnalysisReport report = filteredImage.getParticleAnalysisReport(i);
+                    System.out.println( "Particle Analysis Report for " + i + " blob: " + report + "\n" + "\n" +
+                                        "Bounding Rectangle width for blob " + i + ": " + report.boundingRectWidth + "\n" + "\n" +
+                                        "Bounding Rectangle Height for blob " + i + ": " + report.boundingRectHeight + "\n" + "\n" +
+                                        "Bounding Rectangle Area for blob " + i + ": "+ report.particleArea);
+                    System.out.println( getTargetType(i));
+            }
+            
+            
+
+            
+            //Always free every image you make!!!!
+            
+            image.free();
+            thresholdImage.free();
+            convexHullImage.free();
+            filteredImage.free();
 
         } catch (AxisCameraException ex) {
             ex.printStackTrace();
@@ -76,12 +137,11 @@ public class TestVision extends CommandBase {
         }
 
          Timer.delay(0.5);
+        foo = false;
+    }
+    
         
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    }
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -96,4 +156,31 @@ public class TestVision extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+    
+    String getTargetType(int particle){
+            
+        String target = "";
+        try{
+            ParticleAnalysisReport report = newFilteredImage.getParticleAnalysisReport(particle);
+            
+            int blobWidth = report.boundingRectWidth;
+            int blobHeight = report.boundingRectHeight;
+
+            
+            if(blobWidth/blobHeight > (topWidth/topHeight - 1) && blobWidth/blobHeight < (topWidth/topHeight + 1) ){
+                    target = "Top target";
+            } else if(blobWidth/blobHeight > (middleWidth/middleHeight - 1) && blobWidth/blobHeight < (middleWidth/middleHeight + 1) ) {
+                    target = "Middle Target";
+            } else{
+                target = "Not Top/Mddle";   
+            }
+        }
+        catch(NIVisionException ex) {
+            ex.printStackTrace();
+        }
+        return target;
+    
+    }
+    
+    
 }
