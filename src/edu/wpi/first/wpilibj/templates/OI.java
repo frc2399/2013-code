@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.templates.commands.Turn;
 import edu.wpi.first.wpilibj.templates.commands.JoystickDrive;
 import edu.wpi.first.wpilibj.templates.commands.BackwardsJoystickDrive;
 import edu.wpi.first.wpilibj.templates.commands.PIDYawTest;
+import edu.wpi.first.wpilibj.templates.commands.Fire;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -64,6 +65,7 @@ public class OI {
     public static int turnButtNum = 3;
     public static int backwardsJoystickDriveButtNum = 8;
     public static int joystickDriveButtNum = 9;
+    public static int fireButtNum = 1;
     
     
     
@@ -74,6 +76,7 @@ public class OI {
     private final JoystickButton turnButt = new JoystickButton(driveyStick, turnButtNum);
     private final JoystickButton backwardsJoystickDriveButt = new JoystickButton(rightStick, backwardsJoystickDriveButtNum);
     private final JoystickButton joystickDriveButt = new JoystickButton(rightStick, joystickDriveButtNum);
+    private final JoystickButton fireButt = new JoystickButton(driveyStick, fireButtNum);
     //ShootOn fastShootOn = new ShootOn(1);
     //ShootOn medShootOn = new ShootOn(.75);
     //ShootOn slowShootOn = new ShootOn(.5);
@@ -81,6 +84,7 @@ public class OI {
     PIDYawTest turn = new PIDYawTest(90);
     JoystickDrive joystickDrive = new JoystickDrive();
     BackwardsJoystickDrive backwardsJoystickDrive = new BackwardsJoystickDrive();
+    Fire fire = new Fire(.5);
     
     public OI(){
         //fastShootButt.whenPressed(fastShootOn);
@@ -90,6 +94,7 @@ public class OI {
         turnButt.whenPressed(turn);
         //backwardsJoystickDriveButt.whenPressed(backwardsJoystickDrive);
         joystickDriveButt.whenPressed(joystickDrive);
+        fireButt.whenPressed(fire);
         
     }
     
