@@ -113,11 +113,11 @@ public class TestVision extends CommandBase {
             //prints out information for each blob found
             for (int i = 0; i < numBlobs; i++) {
                     ParticleAnalysisReport report = filteredImage.getParticleAnalysisReport(i);
-                    System.out.println( "Particle Analysis Report for " + i + " blob: " + report + "\n" + "\n" +
+                    System.out.println( "Particle Analysis Report for " + i + " blob: " + report.toString() + "\n" + "\n" +
                                         "Bounding Rectangle width for blob " + i + ": " + report.boundingRectWidth + "\n" + "\n" +
                                         "Bounding Rectangle Height for blob " + i + ": " + report.boundingRectHeight + "\n" + "\n" +
-                                        "Bounding Rectangle Area for blob " + i + ": "+ report.particleArea);
-                    System.out.println( getTargetType(i));
+                                        "Bounding Rectangle Area for blob " + i + ": "+ report.particleArea + "\n" + "\n");
+                    System.out.println( "blob " + i + " is a " + getTargetType(i)  + "\n" + "\n");
             }
             
             
@@ -159,7 +159,7 @@ public class TestVision extends CommandBase {
     
     String getTargetType(int particle){
             
-        String target = "";
+        String target = "not set";
         try{
             ParticleAnalysisReport report = newFilteredImage.getParticleAnalysisReport(particle);
             
@@ -172,7 +172,7 @@ public class TestVision extends CommandBase {
             } else if(blobWidth/blobHeight > (middleWidth/middleHeight - 1) && blobWidth/blobHeight < (middleWidth/middleHeight + 1) ) {
                     target = "Middle Target";
             } else{
-                target = "Not Top/Mddle";   
+                target = "Not Top/Middle";   
             }
         }
         catch(NIVisionException ex) {
