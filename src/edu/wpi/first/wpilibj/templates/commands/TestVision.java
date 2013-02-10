@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
+ *how far away we are, how far left and right, how 
  * @author Lauren Dierker
  */
 public class TestVision extends CommandBase {
@@ -30,12 +30,12 @@ public class TestVision extends CommandBase {
     final double pyramidHeightFromGround = 0; //find this later...
     
     
-    final double topWidth = 54;
-    final double middleWidth = 54;
+    final double topWidth = 62;
+    final double middleWidth = 62;
     final double lowWidth = 29;
     
-    final double topHeight = 12;
-    final double middleHeight = 21;
+    final double topHeight = 20;
+    final double middleHeight = 29;
     
     final double cameraHeight = 0; //we dont know yet (2.5 feet?)
     
