@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.templates.commands.LoadDisk;
 
 /**
  * AKA MAGAZINE
@@ -35,6 +36,7 @@ public class Loader1 extends PIDSubsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new LoadDisk());
     }
     
     public void setSetpoint(double angle){
