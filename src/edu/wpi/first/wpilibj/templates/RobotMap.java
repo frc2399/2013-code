@@ -45,6 +45,11 @@ public class RobotMap {
     //NOT CORRECT!!!!!
     public static final int shootMot = 9;
     
+    //NOT CORRECT!!!!!
+    public static final int topSensor = 1;
+    public static final int bottomSensor = 2;
+    public static final int triggerSensor = 3;
+    
     
     
 }

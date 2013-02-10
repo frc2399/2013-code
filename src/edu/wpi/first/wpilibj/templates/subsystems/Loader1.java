@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.AnalogChannel;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * AKA MAGAZINE
@@ -22,6 +23,10 @@ public class Loader1 extends PIDSubsystem {
     //0 is potentially -10V
     public AnalogChannel loadEncoder1 = new AnalogChannel(RobotMap.loadEncoder1);
     
+    
+    public DigitalInput topSensor = new DigitalInput(RobotMap.topSensor);
+    public DigitalInput bottomSensor = new DigitalInput(RobotMap.bottomSensor);
+    public DigitalInput triggerSensor = new DigitalInput(RobotMap.triggerSensor);
     
     public Loader1(){
         super(0.000001, 0, 0);
