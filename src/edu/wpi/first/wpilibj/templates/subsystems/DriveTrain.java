@@ -33,11 +33,10 @@ public class DriveTrain extends Subsystem {
         gyro.reset();
         gyro.setSensitivity(0.007);
     }
-    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand( new JoystickDrive());
+        //setDefaultCommand( new JoystickDrive());
     }
     
     public double getTestEncoder() {

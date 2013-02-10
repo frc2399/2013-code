@@ -26,11 +26,12 @@ public class Shooter extends Subsystem {
     }
     
     public void setShooterSpeed(double speed){
-        shootMot.set(speed);
+        //shootMot.set(speed);
     }
     
     public double getShooterSpeed(){
-        return shootMot.getSpeed();
+        //return shootMot.getSpeed();
+        return 0.0;
     }
 }
 

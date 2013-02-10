@@ -38,6 +38,7 @@ public abstract class CommandBase extends Command {
         pitch = new Pitch();
         shooter = new Shooter();
         vision = new Vision();
+        
 
         //leave oi at the bottom and apart from the other initialized things
         //if it is initialized before the subsytems, it throws some null pointer exceptions
