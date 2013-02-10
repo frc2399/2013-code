@@ -2,7 +2,8 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.CANJaguar.ControlMode;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.ManPitch;
@@ -14,7 +15,7 @@ public class Pitch extends PIDSubsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
-    public Jaguar pitchMot = new Jaguar(RobotMap.pitchMot);
+    public CANJaguar pitchMot;// = new Jaguar(RobotMap.pitchMot);
     //this is different because it is a magnetic encoder
     public AnalogChannel pitchEncoder = new AnalogChannel(RobotMap.pitchEncoder);
     
@@ -23,6 +24,11 @@ public class Pitch extends PIDSubsystem {
     
     public Pitch(){
         super(0.000001, 0, 0);
+        try{
+            pitchMot = new CANJaguar(RobotMap.pitchMot, ControlMode.kSpeed);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
     
     public void initDefaultCommand() {
@@ -49,7 +55,11 @@ public class Pitch extends PIDSubsystem {
     protected void usePIDOutput(double output){
         //TEST THIS
         //this is really small so that the robot does not decapitatie itself!
-        pitchMot.set(output * 0.1);
+        try{
+            pitchMot.setX(output * 0.1);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
     
     
@@ -59,7 +69,11 @@ public class Pitch extends PIDSubsystem {
      * @param speed speed of the pitch motor. -1 <= speed <= 1.
      */
     public void setSpeed(double speed){
-        pitchMot.set(speed);
+        try{
+            pitchMot.setX(speed);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
     
     

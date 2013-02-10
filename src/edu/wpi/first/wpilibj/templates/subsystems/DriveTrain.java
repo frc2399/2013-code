@@ -3,7 +3,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.commands.JoystickDrive;
-import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.Encoder;
@@ -19,10 +19,10 @@ public class DriveTrain extends Subsystem {
 
     //THESE ARE NOT CORRECT PORT NUMBERS!!!
     //they are set to PIMP's #'s
-    public Jaguar leftFront = new Jaguar(1);
-    public Jaguar leftRear = new Jaguar(2);
-    public Jaguar rightFront = new Jaguar(4);
-    public Jaguar rightRear = new Jaguar(3);
+    public CANJaguar leftFront; // = new Jaguar(1);
+    public CANJaguar leftRear; // = new Jaguar(2);
+    public CANJaguar rightFront; // = new Jaguar(4);
+    public CANJaguar rightRear; // = new Jaguar(3);
     
     Encoder testEncoder = new Encoder(RobotMap.testEncoderA, RobotMap.testEncoderB);
     public Gyro gyro = new Gyro(RobotMap.gyro);
@@ -30,6 +30,16 @@ public class DriveTrain extends Subsystem {
     public RobotDrive drive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
     
     public DriveTrain(){
+        try{
+            leftFront = new CANJaguar(1);
+            leftRear = new CANJaguar(2);
+            rightFront = new CANJaguar(4);
+            rightRear = new CANJaguar(3);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        
         gyro.reset();
         gyro.setSensitivity(0.007);
     }
