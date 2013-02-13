@@ -14,7 +14,7 @@ public class Vision extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand( new TestVision());
+        //setDefaultCommand( new TestVision());
     }
 }
 

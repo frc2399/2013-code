@@ -4,6 +4,8 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.TestVision;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -45,7 +47,14 @@ public class OI {
     
     Joystick driveyStick = new Joystick(3);
     
+    Button aim = new JoystickButton(driveyStick, 2);
     
+    TestVision testVision = new TestVision();
+    
+    public OI(){
+    
+    aim.whenPressed( testVision );
+}
     //FIX THESE 
     //we dont want to twist and go forward!!!!!
     //they are all negative because PIMP is wired so that all of the motors run 
