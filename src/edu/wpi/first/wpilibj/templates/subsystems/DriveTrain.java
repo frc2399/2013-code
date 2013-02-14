@@ -29,9 +29,7 @@ public class DriveTrain extends Subsystem {
         setDefaultCommand( new JoystickDrive());
     }
     
-    public void Strafe(double speed){
-        drive.mecanumDrive_Cartesian(0, speed, 0, 0);
-    }
+    
     
 }
 

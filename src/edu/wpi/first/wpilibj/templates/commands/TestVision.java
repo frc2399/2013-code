@@ -9,8 +9,9 @@ import edu.wpi.first.wpilibj.image.NIVision.MeasurementType;
 import edu.wpi.first.wpilibj.image.NIVisionException;
 import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.templates.commands.Strafe;
 /**
- *how far away we are, how far left and right, how 
+ *
  * @author Lauren Dierker
  */
 public class TestVision extends CommandBase {
@@ -35,6 +36,9 @@ public class TestVision extends CommandBase {
     int blobWeWant;
     int blobHeight;
     ParticleAnalysisReport newReport;
+    
+    Strafe strafe = new Strafe(-0.25);
+    Strafe negStrafe = new Strafe( 0.25);
     
 
     public TestVision() {
@@ -80,11 +84,6 @@ public class TestVision extends CommandBase {
             ColorImage image = camera.getImage();
 
             image.write("/newImage" + "d" + ".bmp");
-
-            //BinaryImage greenThreshold = image.thresholdRGB(0, 187, 189, 255, 0, 225);
-            //BinaryImage convexHullImage = greenThreshold.convexHull(false);
-            //BinaryImage noSmallParticles = convexHullImage.removeSmallObjects(false, 5);
-            //BinaryImage foundParticles = noSmallParticles.particleFilter(cc);
 
             //BinaryImage thresholdImage = image.thresholdRGB(180, 255, 180, 250, 175, 255);   // keep only green objects
             //these values were not working in the light 
@@ -137,13 +136,16 @@ public class TestVision extends CommandBase {
                 }
             }
             
+            //if to the right of target move left
+            //if to the left of target move right
+            //if in the center area, does not move
             if(newReport.center_mass_x  < 150){
-                driveTrain.Strafe(- 0.25);
+                strafe.start();
             } else if( newReport.center_mass_x > 170){
-                driveTrain.Strafe( 0.25);
-            } else{
-                driveTrain.Strafe(0);
-            }
+                negStrafe.start();
+            } 
+            
+            //Timer.delay( 1);
             
 
               
@@ -180,7 +182,11 @@ public class TestVision extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-
+    /**
+     * 
+     * @param particle the blob found in image processing
+     * @return target type( Top, Middle)
+     */
     String getTargetType(int particle) {
 
         String target = "not set";
@@ -204,7 +210,15 @@ public class TestVision extends CommandBase {
         return target;
 
     }
-
+    /**
+     * 
+     * @param particleNumber the blob we want to use for distance calculations
+     * @param pixelWidth the width of the specified blob
+     * @param degrees the degrees of camera viewing angle
+     * @return the distance from targets
+     * 
+     * Calculates the distance the robot is from targets
+     */
     public double getDistance(int particleNumber, double pixelWidth, double degrees) {
         int targetWidth = 64;
 
