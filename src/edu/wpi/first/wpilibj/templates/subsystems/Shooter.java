@@ -1,20 +1,34 @@
 
 package edu.wpi.first.wpilibj.templates.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem; 
-import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.command.PIDSubsystem; 
+import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
  *
  */
-public class Shooter extends Subsystem {
+public class Shooter extends PIDSubsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
     //might be correct port #
     //if this fails, ask electrical if it is actually plugged into this port
     //might not be a Jag
-    public Jaguar shootMot = new Jaguar(5);
+    
+    public Encoder shootEncoder = new Encoder(RobotMap.shootEncoderA, RobotMap.shootEncoderB);
+    public CANJaguar shootMot;
+    
+    public Shooter(){
+        super(0.001, 0, 0);
+        try {
+            shootMot = new CANJaguar(RobotMap.shootMot);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+    }
 
     //not setting a default command at the moment
     //there is no default in 2012 code
@@ -23,6 +37,16 @@ public class Shooter extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    protected double returnPIDInput(){
+        return shootEncoder.pidGet();
+    }
+    
+    protected void usePIDOutput(double output){
+        //TEST THIS
+        //this is really small so that the robot does not decapitatie itself!
+        shootMot.set(output);
     }
     
     public void setShooterSpeed(double speed){
@@ -34,4 +58,5 @@ public class Shooter extends Subsystem {
         return 0.0;
     }
 }
+
 

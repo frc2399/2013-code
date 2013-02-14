@@ -20,18 +20,17 @@ public class ShootOn extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shooter.setShooterSpeed(speed);
+        shooter.setSetpoint(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
     }
 
     // Make this return true when this Command no longer needs to run execute()
     //ends command if the speed of the shooter is greater than or equal to the input speed
     protected boolean isFinished() {
-        return shooter.getShooterSpeed() >= speed * 0.95;
+        return shooter.onTarget();
     }
 
     // Called once after isFinished returns true

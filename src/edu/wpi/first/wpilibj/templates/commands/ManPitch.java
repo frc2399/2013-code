@@ -5,11 +5,12 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author Jessie
  */
-public class PIDTester extends CommandBase {
+public class ManPitch extends CommandBase {
 
-    public PIDTester() {
+    public ManPitch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(pitch);
     }
 
     // Called just before this Command runs the first time
@@ -18,6 +19,7 @@ public class PIDTester extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        pitch.setSetpoint(oi.getDriveyStickThrottle());
     }
 
     // Make this return true when this Command no longer needs to run execute()

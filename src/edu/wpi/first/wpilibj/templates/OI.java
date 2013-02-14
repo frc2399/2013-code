@@ -10,6 +10,10 @@ import edu.wpi.first.wpilibj.templates.commands.ShootOn;
 import edu.wpi.first.wpilibj.templates.commands.ShootOff;
 import edu.wpi.first.wpilibj.templates.commands.GyroReset;
 import edu.wpi.first.wpilibj.templates.commands.Turn;
+import edu.wpi.first.wpilibj.templates.commands.JoystickDrive;
+import edu.wpi.first.wpilibj.templates.commands.BackwardsJoystickDrive;
+import edu.wpi.first.wpilibj.templates.commands.PIDYawTest;
+import edu.wpi.first.wpilibj.templates.commands.Fire;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,12 +54,19 @@ public class OI {
     
     
     Joystick driveyStick = new Joystick(3);
+    Joystick leftStick = new Joystick(1);
+    Joystick rightStick = new Joystick(2);
+    
     
     public static int fastShootButtNum = 7;
     public static int medShootButtNum = 8;
     public static int slowShootButtNum = 9;
     public static int gyroResetButtNum = 4;
     public static int turnButtNum = 3;
+    public static int backwardsJoystickDriveButtNum = 8;
+    public static int joystickDriveButtNum = 9;
+    public static int fireButtNum = 1;
+    
     
     
     private final JoystickButton fastShootButt = new JoystickButton(driveyStick, fastShootButtNum); 
@@ -63,12 +74,17 @@ public class OI {
     private final JoystickButton slowShootButt = new JoystickButton(driveyStick, slowShootButtNum); 
     private final JoystickButton gyroResetButt = new JoystickButton(driveyStick, gyroResetButtNum);
     private final JoystickButton turnButt = new JoystickButton(driveyStick, turnButtNum);
-    
+    private final JoystickButton backwardsJoystickDriveButt = new JoystickButton(rightStick, backwardsJoystickDriveButtNum);
+    private final JoystickButton joystickDriveButt = new JoystickButton(rightStick, joystickDriveButtNum);
+    private final JoystickButton fireButt = new JoystickButton(driveyStick, fireButtNum);
     //ShootOn fastShootOn = new ShootOn(1);
     //ShootOn medShootOn = new ShootOn(.75);
     //ShootOn slowShootOn = new ShootOn(.5);
     GyroReset gyroReset = new GyroReset();
-    Turn turn = new Turn(90, 0.25);
+    PIDYawTest turn = new PIDYawTest(90);
+    JoystickDrive joystickDrive = new JoystickDrive();
+    BackwardsJoystickDrive backwardsJoystickDrive = new BackwardsJoystickDrive();
+    Fire fire = new Fire();
     
     public OI(){
         //fastShootButt.whenPressed(fastShootOn);
@@ -76,6 +92,9 @@ public class OI {
         //slowShootButt.whenPressed(slowShootOn);
         gyroResetButt.whenPressed(gyroReset);
         turnButt.whenPressed(turn);
+        //backwardsJoystickDriveButt.whenPressed(backwardsJoystickDrive);
+        joystickDriveButt.whenPressed(joystickDrive);
+        fireButt.whenPressed(fire);
         
     }
     
@@ -96,6 +115,11 @@ public class OI {
     public double getTwistSpeed(){
         return -driveyStick.getRawAxis(3);
         
+    }
+
+    public double getDriveyStickThrottle()
+    {
+        return driveyStick.getRawAxis(4);
     }
 }
 

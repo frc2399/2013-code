@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.Timer;
  *
  * @author Lauren Dierker and Jessie Adkins
  */
-public class JoystickDrive extends CommandBase {
+public class BackwardsJoystickDrive extends CommandBase {
 
     Timer timer;
     
-    public JoystickDrive() {
+    public BackwardsJoystickDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(driveTrain);
@@ -21,7 +21,7 @@ public class JoystickDrive extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         driveTrain.startTestEncoder();
-        //driveTrain.resetGyro();
+        driveTrain.resetGyro();
         
         //for some reason, when the timer is in use, the joysticks stop actually
         //driving the robot.  I don't know why, but we should remember this
@@ -36,7 +36,7 @@ public class JoystickDrive extends CommandBase {
         //it seems to be okay now
         //not sure why
         //look into this matter later, might need to change some source code
-        driveTrain.drive.mecanumDrive_Cartesian(oi.getSideSpeed(), oi.getForwardSpeed(), oi.getTwistSpeed(), 0);
+        driveTrain.drive.mecanumDrive_Cartesian(-oi.getSideSpeed(), -oi.getForwardSpeed(), -oi.getTwistSpeed(), 0);
         
         //System.out.println("Time: " + timer.get() + "miliseconds");
         System.out.println("encoder: " + driveTrain.getTestEncoder());

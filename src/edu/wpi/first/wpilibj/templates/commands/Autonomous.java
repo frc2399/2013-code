@@ -3,7 +3,7 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 /**
  *
- * @author bradmiller
+ * @author Jessie
  */
 public class Autonomous extends CommandBase {
 
@@ -12,7 +12,6 @@ public class Autonomous extends CommandBase {
         // eg. requires(chassis);
         requires(CommandBase.shooter);
         requires(CommandBase.vision);
-        requires(CommandBase.pitch);
     }
 
     // Called just before this Command runs the first time
