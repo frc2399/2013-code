@@ -47,11 +47,19 @@ public class Shooter extends PIDSubsystem {
     protected void usePIDOutput(double output){
         //TEST THIS
         //this is really small so that the robot does not decapitatie itself!
-        shootMot.set(output);
+        try{
+            shootMot.setX(output);
+        }catch(Exception e){
+            
+        }
     }
     
     public void setShooterSpeed(double speed){
-        shootMot.set(speed);
+        try{
+            shootMot.setX(speed);
+        }catch(Exception e){
+            
+        }
     }
     
     
