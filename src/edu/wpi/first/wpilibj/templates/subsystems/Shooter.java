@@ -53,10 +53,7 @@ public class Shooter extends PIDSubsystem {
         //shootMot.set(speed);
     }
     
-    public double getShooterSpeed(){
-        //return shootMot.getSpeed();
-        return 0.0;
-    }
+    
 }
 
 
