@@ -34,6 +34,7 @@ public class LoadDisk extends CommandBase {
         //SYNC LOADER 1!
         
         //constant used for tuning the initial position of loader 1
+        
         double x = 0;
         
         intervalA1 = 0 + x;
@@ -102,6 +103,8 @@ public class LoadDisk extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         //needs to rotate 90 degrees
+        
+        /**
         if(loader1.triggerSensor.get() == false){
             if(loader1.topSensor.get() == true){
                 if(loader1.bottomSensor.get() == false){
@@ -116,6 +119,7 @@ public class LoadDisk extends CommandBase {
         }else{
             //do nothing, I think
         }
+         */
     }
 
     // Make this return true when this Command no longer needs to run execute()

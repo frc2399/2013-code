@@ -130,5 +130,10 @@ public class OI {
     public double getDriveyStickThrottle(){
         return driveyStick.getRawAxis(4);
     }
+    
+    public double getLeftStickThrottle()
+    {
+        return leftStick.getRawAxis(3);
+    }
 }
 

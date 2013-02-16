@@ -25,9 +25,9 @@ public class Loader1 extends PIDSubsystem {
     public AnalogChannel loadEncoder1 = new AnalogChannel(RobotMap.loadEncoder1);
     
     
-    public DigitalInput topSensor = new DigitalInput(RobotMap.topSensor);
-    public DigitalInput bottomSensor = new DigitalInput(RobotMap.bottomSensor);
-    public DigitalInput triggerSensor = new DigitalInput(RobotMap.triggerSensor);
+    public DigitalInput topSensor; //= new DigitalInput(RobotMap.topSensor);
+    public DigitalInput bottomSensor; //= new DigitalInput(RobotMap.bottomSensor);
+    public DigitalInput triggerSensor; //= new DigitalInput(RobotMap.triggerSensor);
     
     public Loader1(){
         super(0.000001, 0, 0);
@@ -36,7 +36,8 @@ public class Loader1 extends PIDSubsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand(new LoadDisk());
+        
+        //setDefaultCommand(new LoadDisk());
     }
     
     public void setSetpoint(double angle){

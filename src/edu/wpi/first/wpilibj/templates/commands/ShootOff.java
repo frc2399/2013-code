@@ -16,7 +16,7 @@ public class ShootOff extends CommandBase {
     // Called just before this Command runs the first time
     //sets speed to zero
     protected void initialize() {
-        shooter.setShooterSpeed(0.0);
+        //shooter.setShooterSpeed(0.0);
     }
 
     // Called repeatedly when this Command is scheduled to run

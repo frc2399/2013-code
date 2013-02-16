@@ -27,7 +27,7 @@ public class DriveTrain extends Subsystem {
     Encoder testEncoder = new Encoder(RobotMap.testEncoderA, RobotMap.testEncoderB);
     public Gyro gyro = new Gyro(RobotMap.gyro);
     
-    public RobotDrive drive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
+    public RobotDrive drive;
     
     public DriveTrain(){
         try{
@@ -37,16 +37,20 @@ public class DriveTrain extends Subsystem {
             rightRear = new CANJaguar(3);
         }catch(Exception e){
             System.out.println(e);
+            System.out.println(leftFront);
+            System.out.println(leftRear);
+            System.out.println(rightFront);
+            System.out.println(rightRear);
         }
         
-        
+        drive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
         gyro.reset();
         gyro.setSensitivity(0.007);
     }
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-        //setDefaultCommand( new JoystickDrive());
+        setDefaultCommand( new JoystickDrive());
     }
     
     public double getTestEncoder() {

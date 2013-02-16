@@ -22,7 +22,7 @@ public class Fire extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        trigger.triggerMot.set(1);
+        trigger.triggerMot.set(.1);
         
     }
 

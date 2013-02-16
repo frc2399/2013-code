@@ -41,6 +41,7 @@ public class JoystickDrive extends CommandBase {
         //System.out.println("Time: " + timer.get() + "miliseconds");
         System.out.println("encoder: " + driveTrain.getTestEncoder());
         System.out.println("gyro: " + driveTrain.getGyroAngle());
+        System.out.println("Left Throttle: " + oi.getLeftStickThrottle());
         
         /**
         //forward = leftFront
